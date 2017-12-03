@@ -26,7 +26,7 @@ string Expression::postfixString() const {
     return head->print_postfix();
 }
 
-int Expression::eval(string infix) const {
+int Expression::eval(string infix)  {
 	int left = 0;
 	int right = 0;
 	int result = 0;
