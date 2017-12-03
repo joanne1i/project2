@@ -1,10 +1,7 @@
+//expression.cpp
 #include "list.h"
-#include "node.h"
 #include "expression.h"
-#include <string>
-#include <cctype>
 #include <stack>
-#include <stdexcept>
 using namespace std;
 
 Expression::Expression() {
@@ -27,6 +24,7 @@ string Expression::postfixString() const {
     return head->print_postfix();
 }
 
+
 bool balanced(string exp) {
 	string temp = exp;
 	for(int j = 0; j < temp.length(); j++) {
@@ -48,8 +46,8 @@ bool balanced(string exp) {
 	//cout << "new length " << temp.length() << endl;
 	return s.empty();
 }
-				
-int Expression::eval(string exp) {
+
+        int Expression::eval(string exp) {
 	if(!balanced(exp)) {
             cout << "parentheses not balanced" << endl;
             return 0;
@@ -68,23 +66,25 @@ int Expression::eval(string exp) {
 		else if(exp[i] == '(') {
 		}
 		else if(exp[i] == ')') {
-			if(nums.empty()) {
-				cout << "error - need rnum" << endl;
-				return 0;
-			}
-
+			if(nums.empty())
+			  {
+			    cout << "error - need rnum" << endl;
+			    return 0;
+			  }
 			right = nums.top();
 			nums.pop();
-			if(op.empty()) {
-				cout << "error - need operator" << endl;
-				return 0;
-			}
+			if(op.empty())
+			  {
+			    cout << "error - need operator" << endl;
+			    return 0;;
+			  }
 			oper = op.top();
 			op.pop();
-			if(nums.empty()) {
-				cout << "error - need lnum" << endl;
-				return 0;
-			}
+			if(nums.empty())
+			  {
+			    cout << "error - need lnum" << endl;
+			    return 0;
+			  }
 			left = nums.top();
 			nums.pop();
 
@@ -106,4 +106,17 @@ int Expression::eval(string exp) {
 	}
 		result = nums.top();
 		return result;
+}
+
+
+bool Expression::isEqual(string infix1, string infix2)
+{
+  if (eval(infix1) == eval(infix2))
+    {
+      return true;
+    }
+  else
+    {
+      return false;
+    }
 }
