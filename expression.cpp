@@ -27,7 +27,7 @@ string Expression::postfixString() const {
     return head->print_postfix();
 }
 
-bool Expression::balanced(string exp) {
+bool balanced(string exp) {
 	string temp = exp;
 	for(int j = 0; j < temp.length(); j++) {
 		if(temp[j] == ' ')
