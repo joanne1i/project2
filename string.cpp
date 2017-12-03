@@ -22,6 +22,6 @@ int main() {
 // Expression* my_exp = new Expression();
  cout << "Enter infix: \n";
  getline(cin, infix);
- cout << "result: " << Expression().eval(exp) << endl;
+ cout << "result: " << Expression().eval(infix) << endl;
     return 0;
 }
