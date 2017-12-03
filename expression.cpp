@@ -1,7 +1,10 @@
-//expression.cpp
 #include "list.h"
+#include "node.h"
 #include "expression.h"
+#include <string>
+#include <cctype>
 #include <stack>
+#include <cstdlib>
 using namespace std;
 
 Expression::Expression() {
@@ -24,7 +27,6 @@ string Expression::postfixString() const {
     return head->print_postfix();
 }
 
-
 bool balanced(string exp) {
 	string temp = exp;
 	for(int j = 0; j < temp.length(); j++) {
@@ -46,12 +48,14 @@ bool balanced(string exp) {
 	//cout << "new length " << temp.length() << endl;
 	return s.empty();
 }
-
-        int Expression::eval(string exp) {
-	if(!balanced(exp)) {
-            cout << "parentheses not balanced" << endl;
-            return 0;
-	    }
+				
+int Expression::eval(string exp) {
+	if(!balanced(exp)) 
+		throw string("missing parentheses");
+	if(exp[exp.length()-1] != ')')
+		throw string("missing parentheses");
+	if(exp[0] != '(')
+		throw string("missing parentheses");
 	int left = 0;
 	int right = 0;
 	int result = 0;
@@ -67,24 +71,16 @@ bool balanced(string exp) {
 		}
 		else if(exp[i] == ')') {
 			if(nums.empty())
-			  {
-			    cout << "error - need rnum" << endl;
-			    return 0;
-			  }
+				throw string("missing Rnumber");
+
 			right = nums.top();
 			nums.pop();
-			if(op.empty())
-			  {
-			    cout << "error - need operator" << endl;
-			    return 0;;
-			  }
+			if(op.empty()) 
+				throw string("missing operator");
 			oper = op.top();
 			op.pop();
-			if(nums.empty())
-			  {
-			    cout << "error - need lnum" << endl;
-			    return 0;
-			  }
+			if(nums.empty()) 
+				throw string("missing Lnumber");
 			left = nums.top();
 			nums.pop();
 
@@ -108,15 +104,27 @@ bool balanced(string exp) {
 		return result;
 }
 
-
-bool Expression::isEqual(string infix1, string infix2)
-{
-  if (eval(infix1) == eval(infix2))
-    {
-      return true;
-    }
-  else
-    {
-      return false;
-    }
+char Expression::compare(string infix1, string infix2)
+{	
+	// checks if infix1 is balanced
+  	if(!balanced(infix1))
+                throw string("missing parentheses");
+        if(infix1[infix1.length()-1] != ')')
+                throw string("missing parentheses");
+        if(infix1[0] != '(')
+                throw string("missing parentheses");
+	// checks if infix2 is balanced
+	if(!balanced(infix2))
+                throw string("missing parentheses");
+        if(infix2[infix2.length()-1] != ')')
+                throw string("missing parentheses");
+        if(infix2[0] != '(')
+                throw string("missing parentheses");
+	// if balanced, it compares
+	if(eval(infix1) > eval(infix2)) 
+	  return '>';
+ 	else if(eval(infix1) < eval(infix2))
+	  return '<';
+ 	else
+	  return '=';
 }
