@@ -44,16 +44,16 @@ int Expression::eval(string exp) {
 		}
 		else if(exp[i] == ')') {
 			if(nums.empty())
-				return 0;//	throw invalid_argument("error - need rnum");
+				return;
 
 			right = nums.top();
 			nums.pop();
 			if(op.empty())
-				return 0;//throw invalid_argument("error - need operator");
+				return;
 			oper = op.top();
 			op.pop();
 			if(nums.empty())
-				return 0; //throw invalid_argument("error - need lnum");
+				return;
 			left = nums.top();
 			nums.pop();
 
