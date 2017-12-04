@@ -62,6 +62,9 @@ int main() {
 	cout << "Please enter 1 for Expression Evaluation, 2 for Expression Comparison, or q to exit the program" << endl;
         cin >> input;
 	cin.ignore();
+	    if(input != 1 && input != 2 && input != 'q') { 
+	    cout << "Invalid input." << endl;  
+	    }
 
     }	
     cout << "Goodbye!" << endl;
