@@ -9,7 +9,7 @@
 #include <iostream>
 int main() {
     int result1 = 0;
-    int result2 = 0;
+    char result2 = 0;
     string evalInfix = "";
     int input = 0;
     string infix1 = "";
