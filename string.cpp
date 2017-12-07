@@ -14,10 +14,10 @@ int main() {
     int input = 0;
     string infix1 = "";
    string infix2 = "";
-    cout << "Please enter 1 for Expression Evaluation, 2 for Expression Comparison, or q to exit the program" << endl;
+    cout << "Please enter 1 for Expression Evaluation, 2 for Expression Comparison, or 3 to exit the program" << endl;
     cin >> input;
     cin.ignore();
-    if(input != 1 && input != 2 && input != 'q') { 
+    if(input != 1 && input != 2 && input != 3) { 
 	    cout << "Invalid input." << endl;  
     }
     while(input == 1 || input == 2) {
@@ -46,23 +46,12 @@ int main() {
 	catch(string error) {
 		cerr << "bad expression: " << error << endl;
 	}
-
-/*	if (Expression().compare(infix1, infix2) == '=')
-	  {
-	    cout << infix1 << " is equal to " << infix2 << endl;
-	  }
-	else if(Expression().compare(infix1, infix2) == '>')
-	  {
-	    cout << infix1 << " is greater than " << infix2 << endl;
-	  }
-	else 
-	    cout << infix1 << "is less than " << infix2 << endl;*/
 	break;
       }
-	cout << "Please enter 1 for Expression Evaluation, 2 for Expression Comparison, or q to exit the program" << endl;
+	cout << "Please enter 1 for Expression Evaluation, 2 for Expression Comparison, or 3 to exit the program" << endl;
         cin >> input;
 	cin.ignore();
-	    if(input != 1 && input != 2 && input != 'q') { 
+	    if(input != 1 && input != 2 && input != 3) { 
 	    cout << "Invalid input." << endl;  
 	    }
 
